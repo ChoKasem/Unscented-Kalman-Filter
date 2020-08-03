@@ -1,4 +1,4 @@
-# Unscented Kalman Filter Project Starter Code
+# Unscented Kalman Filter Project
 Self-Driving Car Engineer Nanodegree Program
 
 In this project utilize an Unscented Kalman Filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower that the tolerance outlined in the project rubric. 
@@ -59,15 +59,6 @@ OUTPUT: values provided by the c++ program to the simulator
 3. Compile: `cmake .. && make`
 4. Run it: `./UnscentedKF`
 
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
 ## Code Style
 
 Please stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html) as much as possible.
@@ -80,12 +71,17 @@ If you'd like to generate your own radar and lidar data, see the
 [utilities repo](https://github.com/udacity/CarND-Mercedes-SF-Utilities) for
 Matlab scripts that can generate additional data.
 
-## Project Instructions and Rubric
+# Overview
 
-This information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see the project page in the classroom
-for instructions and the project rubric.
+## UKF
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+### CTRV Model
+CTRV model stand for Constant turning rate and velocity. Therefore, PhiDot and V are constants.
+The state of the rover are: Px, Py, V, Phi, and PhiDot. By including the process noise such as the noise from acceleration and turning, we have addition two variable, resulting in state vector of size 7.
+
+### Generating Sigma Points
+UKF use multiples point to estimated the state of the rover. Those points are sigma points. The number of sigma points required depend on the size of the state vector.
+
+## Result
+
 
