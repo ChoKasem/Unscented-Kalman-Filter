@@ -80,8 +80,24 @@ CTRV model stand for Constant turning rate and velocity. Therefore, PhiDot and V
 The state of the rover are: Px, Py, V, Phi, and PhiDot. By including the process noise such as the noise from acceleration and turning, we have addition two variable, resulting in state vector of size 7.
 
 ### Generating Sigma Points
-UKF use multiples point to estimated the state of the rover. Those points are sigma points. The number of sigma points required depend on the size of the state vector.
+UKF use multiples point to estimated the state of the rover. Those points are sigma points. The number of sigma points required depend on the size of the state vector. 
+
+The point will take into account the variance and the mean of the point to create a genarally uniform data around that distribution, giving a good estimate of the state. 
+
+### Predicting Sigma Points
+After generating sigma points, we predict the new sigma points from the motion model and the process noise by simply input it into the model function.
+
+### Predicting State Mean and Variance
+Using the predicted sigma points, now we can find the mean and variance of the predicted state. Note that the process noise does not effect the prediction of mean and variance anymore because it is already considered during prediciting the predicted sigma points process.
+
+To find the mean and covariance, we will also need to weight each points. The first point will be given a higher weight because it represent the mean of the distribution.
+
+### Predictig New State from Sensor Measurement
+After getting mean and variance, we use the sensor measurement to update our state even further.
+
 
 ## Result
+![image1](data1.png)
+![image2](data2.png)
 
-
+The accuracy of the UKF is lower than 0.2. In theory, by using UKF you have more point for estimation. Thus, giving a better estimation than EKF
